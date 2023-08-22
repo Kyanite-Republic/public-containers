@@ -4,7 +4,8 @@ on:
   push:
     branches: [ "main" ]
     paths:
-    - 'rubocop-cicd/**/*'
+    - 'rubocop-cicd/lax/*'
+    - 'rubocop-cicd/rubocop-lax'
 
 jobs:
   kaniko:
