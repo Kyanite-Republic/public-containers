@@ -1,0 +1,22 @@
+name: Build Rubocop
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+    - 'rubocop-cicd/rubocop'
+
+jobs:
+  kaniko:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          image: nhillsdonuk/rubocop-cicd
+          username: ${{ secrets.DHUB_USER }}
+          password: ${{ secrets.DHUB_TOKEN }}
+          build_file: "rubocop-cicd/rubocop"
+          tag: 3.1.2
+          strip_tag_prefix: true
