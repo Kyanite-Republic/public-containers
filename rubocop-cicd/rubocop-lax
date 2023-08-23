@@ -3,4 +3,4 @@ FROM ruby:3.1.2-alpine
 RUN gem install rubocop
 
 WORKDIR /rubocop
-COPY rubocop-cicd/lax/rubocop.yml /rubocop/.rubocop.yml
+COPY rubocop-cicd/lax/rubocop.yml /.rubocop.yml
