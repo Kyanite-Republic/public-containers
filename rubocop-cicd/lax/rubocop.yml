@@ -12,3 +12,6 @@ Metrics/ClassLength:
 
 Style/NumericLiterals:
   Enabled: false
+
+Metrics/ParameterLists:
+  Max: 10
