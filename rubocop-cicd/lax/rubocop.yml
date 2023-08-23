@@ -1,6 +1,3 @@
-AllCops:
-  EnabledByDefault: true
-
 Metrics/MethodLength:
   Max: 20
 
