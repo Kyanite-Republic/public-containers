@@ -9,3 +9,6 @@ Metrics/AbcSize:
 
 Metrics/ClassLength:
   Max: 150
+
+Style/NumericLiterals:
+  Enabled: false
