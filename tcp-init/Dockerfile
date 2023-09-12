@@ -1,3 +1,3 @@
-FROM ruby:3.0.3-alpine3.15
+FROM ruby:3.1.2-alpine3.18
 
 COPY tcp-init.rb .
