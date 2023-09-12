@@ -1,0 +1,21 @@
+name: Build tcp-init
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+    - 'tcp-init/**/*'
+
+jobs:
+  kaniko:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          image: nhillsdonuk/tcp-init
+          username: ${{ secrets.DHUB_USER }}
+          password: ${{ secrets.DHUB_TOKEN }}
+          build_file: "tcp-init/Dockerfile"
+          tag: "latest"
