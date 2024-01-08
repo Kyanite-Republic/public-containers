@@ -1,13 +1,13 @@
 name: Build puppet-lint
-env:
-  THIS_CONTAINER: 'puppet-lint'
-
 on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
     paths:
-    - "${{ env.THIS_CONTAINER }}/**/*"
+    - "puppet-lint/**/*"
+    
+env:
+  THIS_CONTAINER: 'puppet-lint'
 
 jobs:
   kaniko:
