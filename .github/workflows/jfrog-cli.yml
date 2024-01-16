@@ -1,0 +1,24 @@
+name: Build jfrog-cli
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+    - "jfrog-cli/**/*"
+    
+env:
+  THIS_CONTAINER: 'jfrog-cli'
+
+jobs:
+  kaniko:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          image: nhillsdonuk/${{ env.THIS_CONTAINER }}
+          username: ${{ secrets.DHUB_USER }}
+          password: ${{ secrets.DHUB_TOKEN }}
+          build_file: "${{ env.THIS_CONTAINER }}/Dockerfile"
+          tag: "latest"
