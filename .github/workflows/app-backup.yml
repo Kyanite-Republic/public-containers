@@ -1,0 +1,21 @@
+name: Build app-backup
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+    - 'app-backup/**/*'
+
+jobs:
+  kaniko:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          image: nhillsdonuk/app-backup
+          username: ${{ secrets.DHUB_USER }}
+          password: ${{ secrets.DHUB_TOKEN }}
+          build_file: "app-backup/Dockerfile"
+          tag: "latest"
