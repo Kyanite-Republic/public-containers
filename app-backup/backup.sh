@@ -22,8 +22,9 @@ directory=$(dirname "$BACKUP_PATH")
 folder=$(basename "$BACKUP_PATH")
 if ! sshpass -p "$BACKUP_PASS" sftp -o StrictHostKeyChecking=no "$BACKUP_USER"@"$BACKUP_SERVER" << EOF
 cd "$directory"
-mkdir "$FOLDER"
-put "$BACKUP" "$BACKUP_PATH"
+mkdir "$folder"
+cd "$folder"
+put "$BACKUP"
 EOF
 then
     echo "Error: Failed to transfer $BACKUP to $BACKUP_SERVER"
