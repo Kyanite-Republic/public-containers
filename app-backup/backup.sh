@@ -18,7 +18,11 @@ fi
 
 # Transfer the dump file to the remote file server using SCP
 echo "Transferring $BACKUP to $BACKUP_SERVER"
-if ! scp "$BACKUP" "$BACKUP_USER"@"$BACKUP_SERVER":"$BACKUP_PATH"; then
+if ! sshpass -p "$BACKUP_PASS" sftp "$BACKUP_USER"@"$BACKUP_SERVER" << EOF
+mkdir -p "$BACKUP_PATH"
+put "$BACKUP" "$BACKUP_PATH"
+EOF
+then
     echo "Error: Failed to transfer $BACKUP to $BACKUP_SERVER"
     exit 1
 fi
