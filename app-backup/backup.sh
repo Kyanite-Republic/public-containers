@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Check if environment variables are set
-if  || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -z "$BACKUP_PATH" ]; then
+if [ -z "$APP_NAME" ] || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -z "$BACKUP_PATH" ]; then
     echo 'Error: Environment variables are missing. Please review configuration'
     exit 1
 fi
 
-# Timestamp for the dump file
+# Timestamp for the backup file
 TIMESTAMP=$(date +"%Y%m%d%H%M")
-BACKUP="${MARIADB_DATABASE}_${TIMESTAMP}.sql"
-# Dump the specified database locally
-echo "Dumping database '$MARIADB_DATABASE' from '$MARIADB_HOST'"
-if ! mysqldump -h "$MARIADB_HOST" -u "$MARIADB_USER" -p"$MARIADB_PASSWORD" "$MARIADB_DATABASE" > "$BACKUP"; then
-    echo "Error: Failed to dump database '$MARIADB_DATABASE'!"
+BACKUP="/${APP_NAME}_${TIMESTAMP}.tar.gz"
+# Archive the backup locally
+echo "Compressing '$APP_NAME' to '$BACKUP'"
+if ! tar -zcvf $BACKUP -C /backup . ; then
+    echo "Error: Failed to backup '$APP_NAME'!"
     exit 1
 fi
 
