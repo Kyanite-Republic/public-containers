@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if environment variables are set
-if [ -z "$APP_NAME" ] || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -z "$BACKUP_PATH" ]; then
+if [ -z "$APP_NAME" ] || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -z "$BACKUP_PASS" ] || [ -z "$BACKUP_PATH" ]; then
     echo 'Error: Environment variables are missing. Please review configuration'
     exit 1
 fi
