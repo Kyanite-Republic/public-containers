@@ -7,7 +7,7 @@ if [ -z "$APP_NAME" ] || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -
 fi
 
 # Timestamp for the backup file
-TIMESTAMP=$(date +"%Y%m%d%H%M")
+TIMESTAMP=$(date +"%Y-%m-%d-%H-%M")
 BACKUP="/${APP_NAME}_${TIMESTAMP}.tar.gz"
 # Archive the backup locally
 echo "Compressing '$APP_NAME' to '$BACKUP'"
