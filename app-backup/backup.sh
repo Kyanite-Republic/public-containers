@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if environment variables are set
-if [ -z "$APP_NAME" ] || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -z "$BACKUP_PASS" ] || [ -z "$BACKUP_PATH" ]; then
+if [ -z "$APP_NAME" ] || [ -z "$BACKUP_SERVER" ] || [ -z "$BACKUP_USER" ] || [ -z "$BACKUP_PASS" ] || [ -z "$BACKUP_TYPE" ]; then
     echo 'Error: Environment variables are missing. Please review configuration'
     exit 1
 fi
@@ -18,12 +18,10 @@ fi
 
 # Transfer the dump file to the remote file server using SCP
 echo "Transferring $BACKUP to $BACKUP_SERVER"
-directory=$(dirname "$BACKUP_PATH")
-folder=$(basename "$BACKUP_PATH")
 if ! sshpass -p "$BACKUP_PASS" sftp -o StrictHostKeyChecking=no "$BACKUP_USER"@"$BACKUP_SERVER" << EOF
-cd "$directory"
-mkdir "$folder"
-cd "$folder"
+cd "$BACKUP_TYPE"
+mkdir "$APP_NAME"
+cd "$APP_NAME"
 put "$BACKUP"
 EOF
 then
