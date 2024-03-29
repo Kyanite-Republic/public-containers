@@ -1,6 +1,8 @@
 FROM debian:stable-slim
 
 RUN apt-get update && apt-get full-upgrade -y && apt install -y \
-    mariadb-client ssh
+    tar ssh sshpass mariadb-client
 
-COPY /maria-backup/backup.sh .
+COPY /app-backup/backup.sh .
+
+CMD ["bash", "./backup.sh"]
