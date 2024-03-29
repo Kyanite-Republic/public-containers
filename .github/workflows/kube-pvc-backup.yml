@@ -17,5 +17,5 @@ jobs:
           image: nhillsdonuk/kube-pvc-backup
           username: ${{ secrets.DHUB_USER }}
           password: ${{ secrets.DHUB_TOKEN }}
-          build_file: "app-backup/Dockerfile"
+          build_file: "kube-pvc-backup/Dockerfile"
           tag: "latest"
