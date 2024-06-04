@@ -1,10 +1,10 @@
-name: Build kube-pvc-backup
+name: Build kube-db-backup
 on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
     paths:
-    - 'kube-pvc-backup/**/*'
+    - 'kube-db-backup/**/*'
 
 jobs:
   kaniko:
@@ -14,8 +14,8 @@ jobs:
       - name: Kaniko build
         uses: aevea/action-kaniko@master
         with:
-          image: nhillsdonuk/kube-pvc-backup
+          image: nhillsdonuk/kube-db-backup
           username: ${{ secrets.DHUB_USER }}
           password: ${{ secrets.DHUB_TOKEN }}
-          build_file: "kube-pvc-backup/Dockerfile"
+          build_file: "kube-db-backup/Dockerfile"
           tag: "latest"
